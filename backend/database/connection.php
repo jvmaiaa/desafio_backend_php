@@ -1,4 +1,5 @@
 <?php
+    // configura conexão com o banco de dados
     $dbHost = 'localhost';
     $dbPort = '5432';
     $dbUsername = 'postgres';

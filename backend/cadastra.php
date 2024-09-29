@@ -1,7 +1,7 @@
 <?php
     include_once('../backend/database/connection.php');
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['submit'])){ //verifica se dados do form foram enviador
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $senha = $_POST['senha'];
@@ -12,19 +12,22 @@
         $estado = $_POST['estado'];
         $endereco = $_POST['endereco'];
 
+        //está verificando se email já existe
         $verifica_email = "SELECT email FROM usuarios WHERE email = $1";
         $resultado_verificacao = pg_query_params($conexao, $verifica_email, array($email));
 
+        //mostra erro se já existir
         if (pg_num_rows($resultado_verificacao) > 0){
             header('Location: cadastra.php?erro=1');
-        } else{
+        } else{ //cadastra usuário com senha criptografada no banco
             $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
-
+            
             $sql = "INSERT INTO usuarios (nome, email, senha, telefone, sexo, data_nasc, cidade, estado, endereco) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)";
             $result = pg_query_params($conexao, $sql, array($nome, $email, $senha_hashed, $telefone, $genero, $data_nascimento, $cidade, $estado, $endereco));
-            
+            //vai pra login.php se der tudo certo
             if ($result) {
                 header('Location: login.php');
+            //mostra erro se n der certo
             } else {
                 header('Location: cadastra.php?erro=1');
             }
@@ -40,11 +43,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../frontend/cadastra.css">
     <link rel="stylesheet" href="../frontend/voltar.css">
-    <title>Cadastra</title>
+    <title>Cadastra</title> 
     
 </head>
-<body>
+<body> 
 <a id="voltar" class="voltar-btn" href="home.php" aria-label="Voltar para a página inicial">Voltar</a>
+<!-- responsável por pegar dados do formulário -->
     <div class="box">
       <form action="cadastra.php" method="POST">
         <fieldset>
@@ -98,9 +102,10 @@
           </div>
           <br><br>
           <input type="submit" name="submit" id="submit">
-        </fieldset>
+        </fieldset> 
       </form>
     </div>
+    <!-- responsável por mostrar qualquer tipo de erro da página de cadastro -->
     <div id="mensagem-erro" class="mensagem-de-erro">E-mail inválido!</div>
     <script>
     const urlParams = new URLSearchParams(window.location.search);

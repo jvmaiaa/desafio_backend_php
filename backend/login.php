@@ -11,6 +11,7 @@
 
 </head>
 <body>
+    <!-- responsável pegar dados do form de login -->
 <a id="voltar" class="voltar-btn" href="home.php" aria-label="Voltar para a página inicial">Voltar</a>
     <div>
         <h1>Login</h1>
@@ -22,8 +23,8 @@
         <input class="inputSubmit" type="submit" name="submit" value="Enviar">
     </form>
     </div>
+    <!-- responsável por mostrar qualquer tipo de erro da página de login -->
     <div id="mensagem-erro" class="mensagem-de-erro">E-mail ou senha inválidos!</div>
-
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('erro')){
