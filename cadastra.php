@@ -1,8 +1,5 @@
 <?php
     if(isset($_POST['submit'])){
-    //     print_r($_POST['nome']);
-    //     print_r($_POST['email']);
-    //     print_r($_POST['telefone']);
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $senha = $_POST['senha'];
@@ -13,7 +10,7 @@
         $estado = $_POST['estado'];
         $endereco = $_POST['endereco'];
 
-        include_once('config.php');
+        include_once('database.php');
 
         $result = pg_query($conexao, "INSERT INTO usuarios (nome, email, senha, telefone, sexo, data_nasc, cidade, estado, endereco) VALUES ('$nome', '$email', '$senha', '$telefone', '$genero', '$data_nascimento', '$cidade', '$estado', '$endereco')");
 
@@ -105,7 +102,7 @@
 <body>
     <a href="home.php">Voltar</a>
     <div class="box">
-        <form action="formulario.php" method="POST">
+        <form action="cadastra.php" method="POST">
             <fieldset>
                 <legend><b>Fórmulário de Clientes</b></legend>
                 <br>

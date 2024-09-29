@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,13 +46,13 @@
     <a href="home.php">Voltar</a>
     <div>
         <h1>Login</h1>
-        <form action="valida-login.php" method="POST">
-          <input type="text" name="email" placeholder="Email">
-          <br><br>
-          <input type="password" name="senha" placeholder="Senha">
-          <br><br>
-          <input class="inputSubmit" type="submit" name="submit" value="Enviar">
-        </form>
+    <form action="valida-login.php" method="POST">
+        <input type="text" name="email" placeholder="Email">
+        <br><br>
+        <input type="password" name="senha" placeholder="Senha">
+        <br><br>
+        <input class="inputSubmit" type="submit" name="submit" value="Enviar">
+    </form>
     </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +37,7 @@
   <h2>Essa página foi feita por João Víctor</h2>
   <div class="box">
       <a href="login.php">Login</a>
-      <a href="formulario.php">Cadastre-se</a>
+      <a href="cadastra.php">Cadastre-se</a>
   </div>
 </body>
 </html>

@@ -3,33 +3,21 @@
 session_start();
 
   if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
-    // require_once('config.php');
-    // $email = $_POST['email'];
-    // $senha = $_POST['senha'];
-    // $query = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
-    // $result = pg_query($conexao, $query);
-    // $row = pg_fetch_assoc($result);
-    // if ($row) {
-    //   echo "Login realizado com sucesso";
-    // } else {
-    //   echo "Email ou senha incorretos";
-    // }
-    include_once('config.php');
+
+    include_once('database.php');
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-
-    // print_r('Email: ' . $email);
-    // print_r('Senha: ' . $senha);
 
     $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
     $result = pg_query($conexao, $sql);
 
-    // print_r($result);
-    // print_r($sql);
-
     if (pg_num_rows($result) > 0) {
+      $user_data = pg_fetch_assoc($result); // recupera dados do usuário
       $_SESSION['email'] = $email;
       $_SESSION['senha'] = $senha;
+      $_SESSION['nome'] = $user_data['nome']; // salva nome do usuário
+      date_default_timezone_set('America/Fortaleza'); // define fuso horário correto
+      $_SESSION['inicio_sessao'] = date('m/d/Y H:i'); // Adicionado para armazenar a data e hora de início da sessão
       header('Location: sistema.php');
     } else {
       unset($_SESSION['email']);	
