@@ -1,4 +1,6 @@
 <?php
+    include_once('../backend/database/connection.php');
+
     if(isset($_POST['submit'])){
         $nome = $_POST['nome'];
         $email = $_POST['email'];
@@ -10,11 +12,23 @@
         $estado = $_POST['estado'];
         $endereco = $_POST['endereco'];
 
-        include_once('../backend/database/connection.php');
+        $verifica_email = "SELECT email FROM usuarios WHERE email = $1";
+        $resultado_verificacao = pg_query_params($conexao, $verifica_email, array($email));
 
-        $result = pg_query($conexao, "INSERT INTO usuarios (nome, email, senha, telefone, sexo, data_nasc, cidade, estado, endereco) VALUES ('$nome', '$email', '$senha', '$telefone', '$genero', '$data_nascimento', '$cidade', '$estado', '$endereco')");
+        if (pg_num_rows($resultado_verificacao) > 0){
+            echo 'Email já cadastrado!';
+        } else{
+            $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
 
-        header('Location: login.php');
+            $sql = "INSERT INTO usuarios (nome, email, senha, telefone, sexo, data_nasc, cidade, estado, endereco) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)";
+            $result = pg_query_params($conexao, $sql, array($nome, $email, $senha_hashed, $telefone, $genero, $data_nascimento, $cidade, $estado, $endereco));
+            
+            if ($result) {
+                header('Location: login.php');
+            } else {
+                echo "Erro ao cadastrar usuário!";
+            }
+        }
     }
 ?>
 
