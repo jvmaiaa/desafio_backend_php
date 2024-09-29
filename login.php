@@ -22,5 +22,13 @@
         <input class="inputSubmit" type="submit" name="submit" value="Enviar">
     </form>
     </div>
+    <div id="mensagem-erro" class="mensagem-de-erro">Email ou senha inválidos!</div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('erro')){
+            document.getElementById("mensagem-erro").style.display = 'block';
+        }
+    </script>
 </body>
 </html>
