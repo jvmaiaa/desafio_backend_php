@@ -16,7 +16,7 @@
         $resultado_verificacao = pg_query_params($conexao, $verifica_email, array($email));
 
         if (pg_num_rows($resultado_verificacao) > 0){
-            echo 'Email já cadastrado!';
+            header('Location: cadastra.php?erro=1');
         } else{
             $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
 
@@ -26,7 +26,7 @@
             if ($result) {
                 header('Location: login.php');
             } else {
-                echo "Erro ao cadastrar usuário!";
+                header('Location: cadastra.php?erro=1');
             }
         }
     }
@@ -101,5 +101,12 @@
         </fieldset>
       </form>
     </div>
+    <div id="mensagem-erro" class="mensagem-de-erro">E-mail inválido!</div>
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('erro') === '1'){
+        document.getElementById("mensagem-erro").style.display = 'block';
+    }
+</script>
 </body>
 </html>

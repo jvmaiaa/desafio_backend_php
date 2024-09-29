@@ -22,7 +22,7 @@
         <input class="inputSubmit" type="submit" name="submit" value="Enviar">
     </form>
     </div>
-    <div id="mensagem-erro" class="mensagem-de-erro">Email ou senha inválidos!</div>
+    <div id="mensagem-erro" class="mensagem-de-erro">E-mail ou senha inválidos!</div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
