@@ -1,0 +1,9 @@
+body{
+  background: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+  color: white;
+  text-align: center;
+}
+.bem-vindo{
+text-align: left; /* joga texto pra esquerda */
+padding: 20px; /* Adiciona padding para espaçamento */
+}

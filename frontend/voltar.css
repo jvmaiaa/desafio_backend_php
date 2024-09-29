@@ -1,0 +1,20 @@
+.voltar-btn {
+  background-color: #107553; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  color: white; 
+  font-size: 15px; 
+  text-decoration: none;
+  display: inline-block; 
+  outline: none;
+}
+
+.voltar-btn:hover {
+  background-color: #107553; 
+  cursor: pointer;
+}
+
+.voltar-btn:focus {
+  outline: none;
+}
